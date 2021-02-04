@@ -5,6 +5,7 @@ phases:
         python: 3.8
   build:
     commands:
+      - ls -la
       - sam package --template-file template.yml --s3-bucket tk-test-lambda-sam --output-template-file packaged-template.yml
 artifacts:
   files:
