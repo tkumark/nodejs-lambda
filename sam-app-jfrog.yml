@@ -24,8 +24,8 @@ pipelines:
         type: bash
         configuration:
           inputResources:
-            - name: sam-app-repo
-            - name: sam-app-filespec
+            - name: sam_app_repo
+            - name: sam_app_filespec
         execution:
           onExecute:
             - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
