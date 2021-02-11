@@ -28,13 +28,9 @@ pipelines:
             #- name: sam_app_filespec
         execution:
           onExecute:
-            - git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
-            - mkdir ~/.linuxbrew/bin
-            - ln -s ../Homebrew/bin/brew ~/.linuxbrew/bin
-            - eval $(~/.linuxbrew/bin/brew shellenv)
-            - brew --version
-            - brew tap aws/tap
-            - brew install aws-sam-cli
+            - git clone https://github.com/awslabs/aws-sam-cli.git && cd aws-sam-cli
+            - sudo python3 setup.py install 
+            - cd .. && sudo rm -rf aws-sam-cli
             - sam --version
             - sam package --template-file template.yml --output-template-file package.yml--s3-bucket tk-test-lambda-sam
 
