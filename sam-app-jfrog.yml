@@ -10,12 +10,12 @@ resources:
       branches: 
         include: main
 
-  - name: sam_app_filespec
-    type: FileSpec
-    configuration:
-      sourceArtifactory: tktest_lambda_nodejs
-      pattern: package.yml
-      target: /mypackage
+  # - name: sam_app_filespec
+  #   type: FileSpec
+  #   configuration:
+  #     sourceArtifactory: tktest_lambda_nodejs
+  #     pattern: package.yml
+  #     target: /mypackage
 
 pipelines:
   - name: sam_nodejs
@@ -25,7 +25,7 @@ pipelines:
         configuration:
           inputResources:
             - name: sam_app_repo
-            - name: sam_app_filespec
+            #- name: sam_app_filespec
         execution:
           onExecute:
             - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
