@@ -28,6 +28,7 @@ pipelines:
             #- name: sam_app_filespec
         execution:
           onExecute:
+            - pip3 --version
             - git clone https://github.com/awslabs/aws-sam-cli.git && cd aws-sam-cli
             - sudo python3 setup.py install 
             - cd .. && sudo rm -rf aws-sam-cli
