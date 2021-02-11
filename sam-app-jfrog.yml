@@ -5,8 +5,8 @@ resources:
   - name: sam-app-repo
     type: GitRepo
     configuration:
-      gitProvider: {{ .Values.Myrepo.gitProvider}}
-      path: {{ .Values.myRepo.pat}}
+      gitProvider: tkgithub
+      path: tkumark/nodejs-lambda
       branches: 
         inclue: main
 
