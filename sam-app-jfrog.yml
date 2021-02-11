@@ -1,11 +1,12 @@
 template: true
+valuesFilePath: ./values.yml
 
 resources:
   - name: sam-app-repo
     type: GitRepo
     configuration:
-      gitProvider: tkgithub
-      path: tkumark/nodejs-lambda
+      gitProvider: {{.Values.myRepo.gitProvider}}
+      path: {{ .Values.myRepo.path }}
       branches: 
         inclue: main
 
