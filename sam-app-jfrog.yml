@@ -2,7 +2,7 @@ template: true
 valuesFilePath: ./values.yml
 
 resources:
-  - name: sam-app-repo
+  - name: sam_app_repo
     type: GitRepo
     configuration:
       gitProvider: {{.Values.myRepo.gitProvider}}
@@ -10,7 +10,7 @@ resources:
       branches: 
         include: main
 
-  - name: sam-app-filespec
+  - name: sam_app_filespec
     type: FileSpec
     configuration:
       sourceArtifactory: tktest_lambda_nodejs
