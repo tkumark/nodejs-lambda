@@ -13,7 +13,7 @@ resources:
   - name: sam_app_filespec
     type: FileSpec
     configuration:
-      sourceArtifactory: tktest-lambda
+      sourceArtifactory: tktest_lambda_nodejs
       pattern: package.yml
       target: /mypackage
 
