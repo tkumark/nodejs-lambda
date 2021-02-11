@@ -1,0 +1,43 @@
+template: true
+valuesFilePath: ./values.yml
+
+resources:
+  - name: sam-app-repo
+    type: GitRepo
+    configuration:
+      gitProvider: {{ .Values.Myrepo.gitProvider}}
+      path: {{ .Values.myRepo.pat}}
+      branches: 
+        inclue: main
+
+  - name: sam-app-filespec
+    type: FileSpec
+    configuration:
+      sourceArtifactory: tktest_lambda_nodejs
+      pattern: package.yml
+      target: /mypackage
+
+pipelines:
+  - name: sam-nodejs
+    steps: 
+      - name: build
+        type: bash
+        configuration:
+          inputResource:
+            - name: sam-app-repo
+            - name: sam-app-filespec
+        execution:
+          onExecute:
+            - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+            - test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+            - test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+            - echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+            - brew --version
+            - brew tap aws/tap
+            - brew install aws-sam-cli
+            - sam --version
+            - sam package --template-file template.yml --output-template-file package.yml--s3-bucket tk-test-lambda-sam 
+            - 
+
+
+           
